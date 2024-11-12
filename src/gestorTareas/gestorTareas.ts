@@ -1,8 +1,8 @@
 import * as readline from 'readline';
 
-import { TareaService } from './services/tareaServices';
+import { TareaService } from '../services/tareaServices';
 
-import { EstadoTarea } from './models/estados';
+import { EstadoTarea } from '../models/estados';
 
 const rl = readline.createInterface({
     input: process.stdin,
