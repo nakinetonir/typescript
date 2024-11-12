@@ -3,6 +3,8 @@ import * as readline from 'readline';
 import { TareaService } from '../services/tareaServices';
 
 import { EstadoTarea } from '../models/estados';
+import { Usuario } from '../models/usuario';
+import { Roles } from '../models/roles';
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -54,12 +56,14 @@ function manejarOpcion(opcion:string){
 }
 
 function agregarTarea(){
+    // TODO: Creación del usuario
+    const usuario:Usuario = new Usuario("Eneko", Roles.Administrador)
     rl.question("Título de la tarea: ", tituloN=>{
         rl.question("Descripción de la tarea (opcional): ", descripcionN=>{
             rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN=>{
                 const fechaVencimiento = new Date(fechaVencimientoN)
                 if (fechaVencimiento){
-                    TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
+                    TareaService.agregarTarea(tituloN, fechaVencimiento, usuario, descripcionN);
                 } else {
                     console.log("Fecha con formato incorrecto");
                 }
