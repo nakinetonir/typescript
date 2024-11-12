@@ -16,8 +16,8 @@ export class Tarea{
     constructor(tituloNuevo: string, fechaVencimientoNueva: Date,  descripcionNueva: string = '', estadoNuevo: EstadoTarea = EstadoTarea.Pendiente, prioridadNueva: PrioridadTarea = PrioridadTarea.Baja){
         this.titulo = tituloNuevo;
         this.descripcion = descripcionNueva;
-        this.estado = estadoNuevo;
         this.fechaVencimiento = fechaVencimientoNueva;
+        this.estado = estadoNuevo;
         this.prioridad = prioridadNueva;
 
     }
