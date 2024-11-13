@@ -24,7 +24,7 @@ export namespace gestorUsuarios{
                     
                 })
                 
-                console.log("Tarea agregada correctamente.");
+                console.log("Usuario agregado correctamente.");
                 mostrarMenu();
             })
     
