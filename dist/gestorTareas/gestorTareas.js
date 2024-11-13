@@ -21,9 +21,9 @@ var gestorTareas;
                     else {
                         console.log("Fecha con formato incorrecto");
                     }
+                    console.log("Tarea agregada correctamente.");
+                    mostrarMenu();
                 });
-                console.log("Tarea agregada correctamente.");
-                mostrarMenu();
             });
         });
     }
