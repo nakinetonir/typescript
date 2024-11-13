@@ -24,7 +24,6 @@ export function obligatorio ( target: any, key:string){
 
 export function rol(metodo: string) {
     const metodosPermitidosPorRole = UsuarioService.getUsuario().rol === Roles.Administrador ? UsuarioService.metodoAdministrador : UsuarioService.metodosColaborador 
-    console.log(metodosPermitidosPorRole,UsuarioService.getUsuario().rol,metodosPermitidosPorRole.find(m=> m === metodo))
     if(metodosPermitidosPorRole.find(metodo=> metodo === metodo))
     {
         console.log("Pemitido")
