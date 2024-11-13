@@ -2,6 +2,7 @@ import * as readline from 'readline';
 import { gestorTareas } from './gestorTareas/gestorTareas';
 import { Usuario } from './models/usuario';
 import { Roles } from './models/roles';
+import { gestorUsuarios } from './gestorUsuarios/gestorUsuarios';
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -13,5 +14,6 @@ const rl = readline.createInterface({
 // TODO: Arreglar la gestión de usuarios
 const usuarioEnCurso: Usuario = new Usuario("Eneko", Roles.Administrador);
 
+gestorUsuarios.mostrarMenu();
 // Llamada a mostrarMenu con el usuario creado
 gestorTareas.mostrarMenu(usuarioEnCurso);
