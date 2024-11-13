@@ -21,11 +21,11 @@ export namespace gestorUsuarios{
             rl.question("Introduce el rol del usuario [Administrador | Colaborador]: ", role=>{
                    UsuarioService.agregarUsuario(nombreUsuario, <Roles>role);
                    
-                    
+                   console.log("Usuario agregado correctamente.");
+                   mostrarMenu();
                 })
                 
-                console.log("Usuario agregado correctamente.");
-                mostrarMenu();
+          
             })
     
     }
