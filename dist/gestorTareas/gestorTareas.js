@@ -33,7 +33,7 @@ var gestorTareas;
         const tareas = tareaServices_1.TareaService.obtenerTareas();
         console.log("\n---Lista de tareas---");
         tareas.forEach((tarea, index) => {
-            console.log(`${index + 1}. Título: ${tarea.titulo}, Descripción: ${tarea.descripcion}, Estado: ${tarea.estado}`);
+            console.log(`${index + 1}. Título: ${tarea.titulo}, Descripción: ${tarea.descripcion}, Estado: ${tarea.estado}, \n      Prioridad: ${tarea.prioridad}, Fecha de Vencimiento: ${tarea.fechaVencimiento}`);
         });
         mostrarMenu();
     }
