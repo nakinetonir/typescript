@@ -18,7 +18,7 @@ export namespace gestorTareas{
                 rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN=>{
                     const fechaVencimiento = new Date(fechaVencimientoN)
                     if (fechaVencimiento){
-                        TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
+                        TareaService.agregarTarea(tituloN, fechaVencimiento, usuario, descripcionN);
                     } else {
                         console.log("Fecha con formato incorrecto");
                     }
