@@ -130,5 +130,6 @@ export namespace gestorUsuarios{
         
 
         }
-}
+        
+    }
 }
