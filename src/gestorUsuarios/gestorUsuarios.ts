@@ -122,7 +122,6 @@ export namespace gestorUsuarios{
                 break;
             case "6":
                 rl.close();
-                console.log("Aplicación cerrada");
                 break;
             default:
                 console.log("Opción no contemplada. Inténtelo de nuevo: ");

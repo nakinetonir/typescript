@@ -43,23 +43,7 @@ export namespace TareaService{
         
     }
 
-    /*export function cambiarEstado(titulo: string, nuevoEstado: EstadoTarea){
-        const tarea = tareas.find(t => t.titulo===titulo)
-        if(tarea){
-            tarea.estado = nuevoEstado;
-        }else{
-            console.log(`Tarea con titulo "${titulo}" no encontrada`);
-        }
-    }
-
-    export function cambiarPrioridad(titulo: string, nuevaPrioridad: PrioridadTarea){
-        const tarea = tareas.find(t => t.titulo===titulo)
-        if(tarea){
-            tarea.prioridad = nuevaPrioridad;
-        }else{
-            console.log(`Tarea con titulo "${titulo}" no encontrada`);
-        }
-    }*/
+    
 
     export function eliminarTareasCompletadas(){
         tareas.forEach((tarea, index) =>{

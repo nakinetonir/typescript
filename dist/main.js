@@ -23,6 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.mostrarMenu = mostrarMenu;
 const readline = __importStar(require("readline"));
 const gestorTareas_1 = require("./gestorTareas/gestorTareas");
 const gestorUsuarios_1 = require("./gestorUsuarios/gestorUsuarios");
@@ -44,6 +45,7 @@ function manejarOpcionPrincipal(opcion) {
     switch (opcion) {
         case "1":
             gestorUsuarios_1.gestorUsuarios.mostrarMenu();
+            mostrarMenu();
             break;
         case "2":
             gestorTareas_1.gestorTareas.mostrarMenu(usuariosServices_1.UsuarioService.getUsuario());

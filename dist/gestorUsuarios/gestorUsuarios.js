@@ -36,9 +36,9 @@ var gestorUsuarios;
         rl.question("Introduce el nombre de usuario: ", nombreUsuario => {
             rl.question("Introduce el rol del usuario [Administrador | Colaborador]: ", role => {
                 usuariosServices_1.UsuarioService.agregarUsuario(nombreUsuario, role);
+                console.log("Usuario agregado correctamente.");
+                mostrarMenu();
             });
-            console.log("Usuario agregado correctamente.");
-            mostrarMenu();
         });
     }
     gestorUsuarios.agregarUsuario = agregarUsuario;
@@ -129,12 +129,11 @@ var gestorUsuarios;
                 break;
             case "6":
                 rl.close();
-                console.log("Aplicación cerrada");
                 break;
             default:
                 console.log("Opción no contemplada. Inténtelo de nuevo: ");
+                mostrarMenu();
         }
-        mostrarMenu();
     }
     gestorUsuarios.manejarOpcion = manejarOpcion;
 })(gestorUsuarios || (exports.gestorUsuarios = gestorUsuarios = {}));
