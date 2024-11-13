@@ -2,15 +2,17 @@
 import { Usuario } from '../models/usuario'
 import { Roles } from '../models/roles'
 
-export namespace UsuarioService{
+export namespace UsuarioService {
     const usuarios: Usuario[] = [];
+
+    let usuarioLogeado: Usuario
 
     export function agregarUsuario(nombreUsuario:string, rol: Roles){
         const tarea = new Usuario(nombreUsuario, rol);
         usuarios.push(tarea);
     }
 
-    export function obtenerTareas(): Usuario[]{
+    export function obtenerUsuarios(): Usuario[]{
         return usuarios;
     }
 
@@ -26,6 +28,15 @@ export namespace UsuarioService{
             console.log(`Usuario con nombre "${nombreUsuario}" no encontrad@`);
         }
     }
+
+    export function getUsuario() {
+            return usuarioLogeado
+    }
+
+    export function setUsuario(usuario: Usuario) {
+        usuarioLogeado = usuario
+        return usuarioLogeado
+}
 
 
 
