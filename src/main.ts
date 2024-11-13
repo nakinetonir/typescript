@@ -36,7 +36,6 @@ function manejarOpcionPrincipal(opcion:string){
     switch(opcion){
         case "1":
             gestorUsuarios.mostrarMenu();
-            mostrarMenu();
             break;
         case "2":
             gestorTareas.mostrarMenu(UsuarioService.getUsuario());
