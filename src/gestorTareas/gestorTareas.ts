@@ -112,8 +112,9 @@ export namespace gestorTareas{
         console.log("2. Ver todas las tareas");
         console.log("3. Filtrar tareas por estado");
         console.log("4. Cambiar el estado de una tarea");
-        console.log("5. Eliminar tareas completadas");
-        console.log("6. Salir\n");
+        console.log("5. Cambiar prioridad de una tarea");
+        console.log("6. Eliminar tareas completadas");
+        console.log("7. Salir\n");
         rl.question("Selecciona una opción: ", opcion => {
             manejarOpcion(opcion, usuario);
         });
@@ -135,9 +136,12 @@ export namespace gestorTareas{
                 cambioEstadoTarea(usuario);
                 break;
             case "5":
-                eliminarTareasCompletadas(usuario);
+                cambioPrioridadTarea(usuario);
                 break;
             case "6":
+                eliminarTareasCompletadas(usuario);
+                break;
+            case "7":
                 rl.close();
                 console.log("Aplicación cerrada");
                 break;
