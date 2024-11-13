@@ -20,7 +20,7 @@ const rl = readline.createInterface({
 //gestorTareas.mostrarMenu(UsuarioService.getUsuario());
 
 
-function mostrarMenu()
+export function mostrarMenu()
 {
     console.log("\n---Menú principal. Seleccione la operación a realizar---");
     console.log("1. Gestión de usuarios");
@@ -29,12 +29,14 @@ function mostrarMenu()
     rl.question("Opción: ", opcion => {
         manejarOpcionPrincipal(opcion);
     });
+    
 
 }
 function manejarOpcionPrincipal(opcion:string){
     switch(opcion){
         case "1":
             gestorUsuarios.mostrarMenu();
+            mostrarMenu();
             break;
         case "2":
             gestorTareas.mostrarMenu(UsuarioService.getUsuario());

@@ -7,14 +7,11 @@ import { matchesGlob } from "path";
 
 export namespace TareaService{
     const tareas: Tarea[] = [];
-    export function agregarTarea(titulo:string, fechaVencimiento: Date, usuario:Usuario,  descripcion?:string, prioridad?:PrioridadTarea){
-        //if (usuario.rol === Roles.Administrador){
-            const tarea = new Tarea(titulo, fechaVencimiento, descripcion);
-            tareas.push(tarea);
-        //}else{
-        //    console.log("Usuario no autorizado para agregar tareas");
-        //}
-        
+    export function agregarTarea(titulo:string, fechaVencimiento: Date, usuario:Usuario,  
+        descripcion?:string, prioridad?:PrioridadTarea){
+        const tarea = new Tarea(titulo, fechaVencimiento, descripcion);
+        tareas.push(tarea);
+                
     }
 
     export function obtenerTareas(): Tarea[]{
@@ -43,23 +40,7 @@ export namespace TareaService{
         
     }
 
-    /*export function cambiarEstado(titulo: string, nuevoEstado: EstadoTarea){
-        const tarea = tareas.find(t => t.titulo===titulo)
-        if(tarea){
-            tarea.estado = nuevoEstado;
-        }else{
-            console.log(`Tarea con titulo "${titulo}" no encontrada`);
-        }
-    }
-
-    export function cambiarPrioridad(titulo: string, nuevaPrioridad: PrioridadTarea){
-        const tarea = tareas.find(t => t.titulo===titulo)
-        if(tarea){
-            tarea.prioridad = nuevaPrioridad;
-        }else{
-            console.log(`Tarea con titulo "${titulo}" no encontrada`);
-        }
-    }*/
+    
 
     export function eliminarTareasCompletadas(){
         tareas.forEach((tarea, index) =>{
