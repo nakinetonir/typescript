@@ -1,12 +1,20 @@
 import { Tarea } from "../models/tarea";
 import { EstadoTarea } from "../models/estados";
 import { PrioridadTarea } from "../models/prioridades";
+import { Usuario } from "../models/usuario";
+import { Roles } from "../models/roles";
+import { matchesGlob } from "path";
 
 export namespace TareaService{
     const tareas: Tarea[] = [];
-    export function agregarTarea(titulo:string, fechaVencimiento: Date,  descripcion?:string, prioridad?:PrioridadTarea){
-        const tarea = new Tarea(titulo, fechaVencimiento, descripcion);
-        tareas.push(tarea);
+    export function agregarTarea(titulo:string, fechaVencimiento: Date, usuario:Usuario,  descripcion?:string, prioridad?:PrioridadTarea){
+        //if (usuario.rol === Roles.Administrador){
+            const tarea = new Tarea(titulo, fechaVencimiento, descripcion);
+            tareas.push(tarea);
+        //}else{
+        //    console.log("Usuario no autorizado para agregar tareas");
+        //}
+        
     }
 
     export function obtenerTareas(): Tarea[]{
