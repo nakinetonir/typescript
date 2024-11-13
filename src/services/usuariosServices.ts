@@ -4,6 +4,8 @@ import { Roles } from '../models/roles'
 
 export namespace UsuarioService {
     const usuarios: Usuario[] = [];
+    export const metodosColaborador:string[] = ["verTareas","filtrarTareas","cambioEstadoTarea"]
+    export const metodoAdministrador:string[] = ["agregarTarea","verTareas","filtrarTareas","cambioEstadoTarea","eliminarTareasCompletadas"]
 
     let usuarioLogeado: Usuario
 

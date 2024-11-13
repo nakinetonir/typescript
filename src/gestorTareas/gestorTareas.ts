@@ -1,7 +1,7 @@
 import * as readline from 'readline';
 
 import { TareaService } from '../services/tareaServices';
-
+import { rol } from '../utils/validadores'
 import { EstadoTarea } from '../models/estados';
 import { Usuario } from '../models/usuario';
 import { Roles } from '../models/roles';
@@ -14,11 +14,13 @@ const rl = readline.createInterface({
 
 export namespace gestorTareas{
     export function agregarTarea(usuario: Usuario){
+        rol('agregarTarea')
         rl.question("Título de la tarea: ", tituloN=>{
             rl.question("Descripción de la tarea (opcional): ", descripcionN=>{
                 rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN=>{
                     const fechaVencimiento = new Date(fechaVencimientoN)
                     if (fechaVencimiento){
+                        
                         TareaService.agregarTarea(tituloN, fechaVencimiento, usuario, descripcionN);
                     } else {
                         console.log("Fecha con formato incorrecto");
@@ -33,6 +35,7 @@ export namespace gestorTareas{
     }
 
     export function verTareas(usuario: Usuario){
+        rol('verTareas')
         const tareas = TareaService.obtenerTareas();
         console.log("\n---Lista de tareas---");
         tareas.forEach((tarea, index) =>{
@@ -43,6 +46,7 @@ export namespace gestorTareas{
     }
 
     export function filtrarTareas(usuario: Usuario){
+        rol('filtrarTareas')
         rl.question("Ingrese el estado para filtrar (Pendiente, En progreaso, Completada, Cancelada): ", estado=>{
             const estadoTarea = EstadoTarea[estado as keyof typeof EstadoTarea];
             if (estadoTarea){
@@ -60,12 +64,14 @@ export namespace gestorTareas{
     }
 
     export function eliminarTareasCompletadas(usuario: Usuario){
+        rol('eliminarTareasCompletadas')
         TareaService.eliminarTareasCompletadas()
         console.log("Tareas completadas eliminadas");
         mostrarMenu(usuario);
     }
 
     export function cambioEstadoTarea(usuario: Usuario){
+        rol('cambioEstadoTarea')
         rl.question("Título de la tarea a modificar: ", titulo=>{
             rl.question("Nuevo estado (Pendiente, En progreaso, Completada, Cancelada): ", nuevoEstado=>{
                 const estadoTarea = EstadoTarea[nuevoEstado as keyof typeof EstadoTarea];
@@ -83,6 +89,7 @@ export namespace gestorTareas{
     }
 
     export function cambioPrioridadTarea(usuario: Usuario){
+        rol('cambioPrioridadTarea')
         rl.question("Título de la tarea a modificar: ", titulo=>{
             rl.question("Nueva prioridad (Alta, Media, Baja): ", nuevaPrioridad=>{
                 const prioridadTarea = PrioridadTarea[nuevaPrioridad as keyof typeof PrioridadTarea];
