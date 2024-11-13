@@ -4,22 +4,10 @@ import { Usuario } from './models/usuario';
 import { Roles } from './models/roles';
 import { gestorUsuarios } from './gestorUsuarios/gestorUsuarios';
 import { UsuarioService } from './services/usuariosServices';
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
-
-// Gestión de usuario, hay que crear algunos usuarios.
-//const usuarioEnCurso: Usuario;
-//const usuarioEnCurso: Usuario = new Usuario("Eneko", Roles.Administrador);
-
-//gestorUsuarios.mostrarMenu();
-
-// Llamada a mostrarMenu con el usuario creado
-//gestorTareas.mostrarMenu(UsuarioService.getUsuario());
+import { mostrarMenuPrincipal } from './gestorPrincipal/gestorPrincipal';
 
 
+<<<<<<< HEAD
 export function mostrarMenu()
 {
     console.log("\n---Menú principal. Seleccione la operación a realizar---");
@@ -53,3 +41,6 @@ function manejarOpcionPrincipal(opcion:string){
 }
 
 mostrarMenu();
+=======
+mostrarMenuPrincipal();
+>>>>>>> af76c411025d002b054d1e60767666e24e1b880c

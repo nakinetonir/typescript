@@ -6,14 +6,14 @@ import { EstadoTarea } from '../models/estados';
 import { Usuario } from '../models/usuario';
 import { Roles } from '../models/roles';
 import { PrioridadTarea } from '../models/prioridades';
-
+import { mostrarMenuPrincipal } from '../gestorPrincipal/gestorPrincipal';
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 })
 
 export namespace gestorTareas{
-    export function agregarTarea(usuario: Usuario){
+    export function agregarTarea(){
         rol('agregarTarea')
         rl.question("Título de la tarea: ", tituloN=>{
             rl.question("Descripción de la tarea (opcional): ", descripcionN=>{
@@ -21,7 +21,7 @@ export namespace gestorTareas{
                     const fechaVencimiento = new Date(fechaVencimientoN)
                     if (fechaVencimiento){
                         
-                        TareaService.agregarTarea(tituloN, fechaVencimiento, usuario, descripcionN);
+                        TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
                     } else {
                         console.log("Fecha con formato incorrecto");
                     }
@@ -29,12 +29,12 @@ export namespace gestorTareas{
                 })
                 
                 console.log("Tarea agregada correctamente.");
-                mostrarMenu(usuario);
+                mostrarMenu();
             })
         })
     }
 
-    export function verTareas(usuario: Usuario){
+    export function verTareas(){
         rol('verTareas')
         const tareas = TareaService.obtenerTareas();
         console.log("\n---Lista de tareas---");
@@ -42,10 +42,10 @@ export namespace gestorTareas{
             console.log(`${index + 1}. Título: ${tarea.titulo}, Descripción: ${tarea.descripcion}, Estado: ${tarea.estado}`);
 
         })
-        mostrarMenu(usuario);
+        mostrarMenu();
     }
 
-    export function filtrarTareas(usuario: Usuario){
+    export function filtrarTareas(){
         rol('filtrarTareas')
         rl.question("Ingrese el estado para filtrar (Pendiente, En progreaso, Completada, Cancelada): ", estado=>{
             const estadoTarea = EstadoTarea[estado as keyof typeof EstadoTarea];
@@ -59,18 +59,18 @@ export namespace gestorTareas{
             }else {
                 console.log("Estado no válido");
             }
-            mostrarMenu(usuario);
+            mostrarMenu();
         })
     }
 
-    export function eliminarTareasCompletadas(usuario: Usuario){
+    export function eliminarTareasCompletadas(){
         rol('eliminarTareasCompletadas')
         TareaService.eliminarTareasCompletadas()
         console.log("Tareas completadas eliminadas");
-        mostrarMenu(usuario);
+        mostrarMenu();
     }
 
-    export function cambioEstadoTarea(usuario: Usuario){
+    export function cambioEstadoTarea(){
         rol('cambioEstadoTarea')
         rl.question("Título de la tarea a modificar: ", titulo=>{
             rl.question("Nuevo estado (Pendiente, En progreaso, Completada, Cancelada): ", nuevoEstado=>{
@@ -82,13 +82,13 @@ export namespace gestorTareas{
                     console.log("Estado no válido.");
                 }
                 
-                mostrarMenu(usuario);
+                mostrarMenu();
             })
         })
         
     }
 
-    export function cambioPrioridadTarea(usuario: Usuario){
+    export function cambioPrioridadTarea(){
         rol('cambioPrioridadTarea')
         rl.question("Título de la tarea a modificar: ", titulo=>{
             rl.question("Nueva prioridad (Alta, Media, Baja): ", nuevaPrioridad=>{
@@ -100,12 +100,12 @@ export namespace gestorTareas{
                     console.log("Prioridad no válida.");
                 }
                 
-                mostrarMenu(usuario);
+                mostrarMenu();
             })
         })
         
     }
-    export function mostrarMenu(usuario: Usuario)
+    export function mostrarMenu()
     {
         console.log("\n---Menú de tareas---");
         console.log("1. Agregar una tarea");
@@ -116,38 +116,38 @@ export namespace gestorTareas{
         console.log("6. Eliminar tareas completadas");
         console.log("7. Salir\n");
         rl.question("Selecciona una opción: ", opcion => {
-            manejarOpcion(opcion, usuario);
+            manejarOpcion(opcion);
         });
     
     }
 
-    export function manejarOpcion(opcion:string, usuario:Usuario){
+    export function manejarOpcion(opcion:string){
         switch(opcion){
             case "1":
-                agregarTarea(usuario);
+                agregarTarea();
                 break;
             case "2":
-                verTareas(usuario);
+                verTareas();
                 break;
             case "3":
-                filtrarTareas(usuario);
+                filtrarTareas();
                 break;
             case "4":
-                cambioEstadoTarea(usuario);
+                cambioEstadoTarea();
                 break;
             case "5":
-                cambioPrioridadTarea(usuario);
+                cambioPrioridadTarea();
                 break;
             case "6":
-                eliminarTareasCompletadas(usuario);
+                eliminarTareasCompletadas();
                 break;
             case "7":
                 rl.close();
-                console.log("Aplicación cerrada");
+                mostrarMenuPrincipal()
                 break;
             default:
                 console.log("Opción no contemplada. Inténtelo de nuevo: ");
-                mostrarMenu(usuario);
+                mostrarMenu();
         
 
         }

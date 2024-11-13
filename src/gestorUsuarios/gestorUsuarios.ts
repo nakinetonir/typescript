@@ -9,7 +9,7 @@ import { UsuarioService } from '../services/usuariosServices';
 
 import { Usuario } from '../models/usuario';
 import { Roles } from '../models/roles';
-
+import { mostrarMenuPrincipal } from '../gestorPrincipal/gestorPrincipal';
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -122,6 +122,7 @@ export namespace gestorUsuarios{
                 break;
             case "6":
                 rl.close();
+                mostrarMenuPrincipal()
                 break;
             default:
                 console.log("Opción no contemplada. Inténtelo de nuevo: ");
