@@ -5,6 +5,7 @@ import { TareaService } from '../services/tareaServices';
 import { EstadoTarea } from '../models/estados';
 import { Usuario } from '../models/usuario';
 import { Roles } from '../models/roles';
+import { PrioridadTarea } from '../models/prioridades';
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -69,10 +70,27 @@ export namespace gestorTareas{
             rl.question("Nuevo estado (Pendiente, En progreaso, Completada, Cancelada): ", nuevoEstado=>{
                 const estadoTarea = EstadoTarea[nuevoEstado as keyof typeof EstadoTarea];
                 if (estadoTarea){
-                    TareaService.cambiarEstado(titulo, estadoTarea);
-                    console.log("Esstado de la tarea actualizado");
+                    TareaService.modificarTarea(titulo, estadoTarea, "cambiarEstado");
+                    console.log("Estado de la tarea actualizado");
                 }else{
                     console.log("Estado no válido.");
+                }
+                
+                mostrarMenu(usuario);
+            })
+        })
+        
+    }
+
+    export function cambioPrioridadTarea(usuario: Usuario){
+        rl.question("Título de la tarea a modificar: ", titulo=>{
+            rl.question("Nueva prioridad (Alta, Media, Baja): ", nuevaPrioridad=>{
+                const prioridadTarea = PrioridadTarea[nuevaPrioridad as keyof typeof PrioridadTarea];
+                if (prioridadTarea){
+                    TareaService.modificarTarea(titulo, prioridadTarea, "cambiarPrioridad");
+                    console.log("Prioridad de la tarea actualizada");
+                }else{
+                    console.log("Prioridad no válida.");
                 }
                 
                 mostrarMenu(usuario);

@@ -25,7 +25,25 @@ export namespace TareaService{
         return tareas.filter(tarea => tarea.estado === estado)
     }
 
-    export function cambiarEstado(titulo: string, nuevoEstado: EstadoTarea){
+    export function modificarTarea(titulo:string, nuevoDato:EstadoTarea, operacion:string):void;
+    export function modificarTarea(titulo:string, nuevoDato:PrioridadTarea, operacion:string):void;
+
+    export function modificarTarea(titulo:string, nuevoDato:any, operacion:string):void{
+        const tarea = tareas.find(t => t.titulo===titulo)
+        if(tarea){
+            if(operacion==="cambiarEstado"){
+                tarea.estado = nuevoDato;
+            }else if(operacion==="cambiarPrioridad"){
+                tarea.prioridad = nuevoDato;
+            }
+            
+        }else{
+            console.log(`Tarea con titulo "${titulo}" no encontrada`);
+        }
+        
+    }
+
+    /*export function cambiarEstado(titulo: string, nuevoEstado: EstadoTarea){
         const tarea = tareas.find(t => t.titulo===titulo)
         if(tarea){
             tarea.estado = nuevoEstado;
@@ -41,7 +59,7 @@ export namespace TareaService{
         }else{
             console.log(`Tarea con titulo "${titulo}" no encontrada`);
         }
-    }
+    }*/
 
     export function eliminarTareasCompletadas(){
         tareas.forEach((tarea, index) =>{
