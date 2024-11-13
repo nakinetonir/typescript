@@ -95,7 +95,8 @@ export namespace gestorUsuarios{
         console.log("2. Ver todas los usuario");
         console.log("3. Filtrar usuarios por rol");
         console.log("4. Cambiar el rol de un usuario");
-        console.log("5. Salir\n");
+        console.log("5. Loguear usuario");
+        console.log("6. Salir\n");
         rl.question("Selecciona una opción: ", opcion => {
             manejarOpcion(opcion);
         });
@@ -117,6 +118,9 @@ export namespace gestorUsuarios{
                 cambioRole();
                 break;
             case "5":
+                seleccionarUsuario();
+                break;
+            case "6":
                 rl.close();
                 console.log("Aplicación cerrada");
                 break;
@@ -126,5 +130,6 @@ export namespace gestorUsuarios{
         
 
         }
-}
+        
+    }
 }
