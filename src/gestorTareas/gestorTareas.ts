@@ -37,7 +37,7 @@ export namespace gestorTareas{
         const tareas = TareaService.obtenerTareas();
         console.log("\n---Lista de tareas---");
         tareas.forEach((tarea, index) =>{
-            console.log(`${index + 1}. Título: ${tarea.titulo}, Descripción: ${tarea.descripcion}, Estado: ${tarea.estado}`);
+            console.log(`${index + 1}. Título: ${tarea.titulo}, Descripción: ${tarea.descripcion}, Estado: ${tarea.estado}, \n      Prioridad: ${tarea.prioridad}, Fecha de Vencimiento: ${tarea.fechaVencimiento}`);
 
         })
         mostrarMenu();
@@ -71,7 +71,7 @@ export namespace gestorTareas{
     export function cambioEstadoTarea(){
         rol('cambioEstadoTarea')
         rl.question("Título de la tarea a modificar: ", titulo=>{
-            rl.question("Nuevo estado (Pendiente, En progreaso, Completada, Cancelada): ", nuevoEstado=>{
+            rl.question("Nuevo estado (Pendiente, EnProgreso, Completada, Cancelada): ", nuevoEstado=>{
                 const estadoTarea = EstadoTarea[nuevoEstado as keyof typeof EstadoTarea];
                 if (estadoTarea){
                     TareaService.modificarTarea(titulo, estadoTarea, "cambiarEstado");

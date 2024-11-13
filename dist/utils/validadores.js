@@ -22,9 +22,14 @@ function obligatorio(target, key) {
 }
 function rol(metodo) {
     const metodosPermitidosPorRole = usuariosServices_1.UsuarioService.getUsuario().rol === roles_1.Roles.Administrador ? usuariosServices_1.UsuarioService.metodoAdministrador : usuariosServices_1.UsuarioService.metodosColaborador;
+<<<<<<< HEAD
     console.log(metodosPermitidosPorRole, usuariosServices_1.UsuarioService.getUsuario().rol, metodosPermitidosPorRole.find(metodo => metodo === metodo) != undefined, metodosPermitidosPorRole.find(m => m === metodo));
     if (metodosPermitidosPorRole.find(metodo => metodo === metodo) != undefined) {
         console.log("Pemitido");
+=======
+    if (metodosPermitidosPorRole.find(metodo => metodo === metodo)) {
+        console.log("Permitido");
+>>>>>>> 6444655b7be82121f4563fd3b72a273c683f56f2
     }
     else {
         throw new Error("This is the error message");

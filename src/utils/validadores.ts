@@ -26,7 +26,7 @@ export function rol(metodo: string) {
     const metodosPermitidosPorRole = UsuarioService.getUsuario().rol === Roles.Administrador ? UsuarioService.metodoAdministrador : UsuarioService.metodosColaborador 
     if(metodosPermitidosPorRole.find(m=> m === metodo)!=undefined)
     {
-        console.log("Pemitido")
+        console.log("Permitido")
     }
     else {
         throw new Error("This is the error message");
