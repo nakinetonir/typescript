@@ -10,22 +10,26 @@ const rl = (0, gestorPrincipal_1.getRl)();
 var gestorTareas;
 (function (gestorTareas) {
     function agregarTarea() {
-        (0, validadores_1.rol)('agregarTarea');
-        rl.question("Título de la tarea: ", tituloN => {
-            rl.question("Descripción de la tarea (opcional): ", descripcionN => {
-                rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN => {
-                    const fechaVencimiento = new Date(fechaVencimientoN);
-                    if (fechaVencimiento) {
-                        tareaServices_1.TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
-                    }
-                    else {
-                        console.log("Fecha con formato incorrecto");
-                    }
-                    console.log("Tarea agregada correctamente.");
-                    mostrarMenu();
+        if ((0, validadores_1.rol)('agregarTarea')) {
+            rl.question("Título de la tarea: ", tituloN => {
+                rl.question("Descripción de la tarea (opcional): ", descripcionN => {
+                    rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN => {
+                        const fechaVencimiento = new Date(fechaVencimientoN);
+                        if (fechaVencimiento) {
+                            tareaServices_1.TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
+                        }
+                        else {
+                            console.log("Fecha con formato incorrecto");
+                        }
+                        console.log("Tarea agregada correctamente.");
+                        mostrarMenu();
+                    });
                 });
             });
-        });
+        }
+        else {
+            mostrarMenu();
+        }
     }
     gestorTareas.agregarTarea = agregarTarea;
     function verTareas() {
@@ -57,16 +61,20 @@ var gestorTareas;
     }
     gestorTareas.filtrarTareas = filtrarTareas;
     function eliminarTareasCompletadas() {
-        (0, validadores_1.rol)('eliminarTareasCompletadas');
-        tareaServices_1.TareaService.eliminarTareasCompletadas();
-        console.log("Tareas completadas eliminadas");
-        mostrarMenu();
+        if ((0, validadores_1.rol)('eliminarTareasCompletadas')) {
+            tareaServices_1.TareaService.eliminarTareasCompletadas();
+            console.log("Tareas completadas eliminadas");
+            mostrarMenu();
+        }
+        else {
+            mostrarMenu();
+        }
     }
     gestorTareas.eliminarTareasCompletadas = eliminarTareasCompletadas;
     function cambioEstadoTarea() {
         (0, validadores_1.rol)('cambioEstadoTarea');
         rl.question("Título de la tarea a modificar: ", titulo => {
-            rl.question("Nuevo estado (Pendiente, En progreaso, Completada, Cancelada): ", nuevoEstado => {
+            rl.question("Nuevo estado (Pendiente, EnProgreso, Completada, Cancelada): ", nuevoEstado => {
                 const estadoTarea = estados_1.EstadoTarea[nuevoEstado];
                 if (estadoTarea) {
                     tareaServices_1.TareaService.modificarTarea(titulo, estadoTarea, "cambiarEstado");

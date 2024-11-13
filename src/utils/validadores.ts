@@ -22,14 +22,16 @@ export function obligatorio ( target: any, key:string){
 
 }
 
-export function rol(metodo: string) {
+export function rol(metodo: string):boolean {
     const metodosPermitidosPorRole = UsuarioService.getUsuario().rol === Roles.Administrador ? UsuarioService.metodoAdministrador : UsuarioService.metodosColaborador 
     if(metodosPermitidosPorRole.find(m=> m === metodo)!=undefined)
     {
         console.log("Permitido")
+        return true;
     }
     else {
-        throw new Error("This is the error message");
+        console.log("Usuario no autorizado");
+        return false;
     }
 
 

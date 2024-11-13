@@ -11,25 +11,28 @@ const rl = getRl()
 
 export namespace gestorTareas{
     export function agregarTarea(){
-        rol('agregarTarea')
-        rl.question("Título de la tarea: ", tituloN=>{
-            rl.question("Descripción de la tarea (opcional): ", descripcionN=>{
-                rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN=>{
-                    const fechaVencimiento = new Date(fechaVencimientoN)
-                    if (fechaVencimiento){
+        if(rol('agregarTarea')){
+            rl.question("Título de la tarea: ", tituloN=>{
+                rl.question("Descripción de la tarea (opcional): ", descripcionN=>{
+                    rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN=>{
+                        const fechaVencimiento = new Date(fechaVencimientoN)
+                        if (fechaVencimiento){
+                            
+                            TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
+                        } else {
+                            console.log("Fecha con formato incorrecto");
+                        }
+                        console.log("Tarea agregada correctamente.");
+                        mostrarMenu();
                         
-                        TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
-                    } else {
-                        console.log("Fecha con formato incorrecto");
-                    }
-                    console.log("Tarea agregada correctamente.");
-                    mostrarMenu();
+                    })
+                    
                     
                 })
-                
-                
             })
-        })
+        }else{
+            mostrarMenu();
+        }
     }
 
     export function verTareas(){
@@ -62,10 +65,16 @@ export namespace gestorTareas{
     }
 
     export function eliminarTareasCompletadas(){
-        rol('eliminarTareasCompletadas')
-        TareaService.eliminarTareasCompletadas()
-        console.log("Tareas completadas eliminadas");
-        mostrarMenu();
+        if (rol('eliminarTareasCompletadas')){
+            TareaService.eliminarTareasCompletadas()
+            console.log("Tareas completadas eliminadas");
+            mostrarMenu();
+
+        }else{
+            mostrarMenu();
+        }
+        
+        
     }
 
     export function cambioEstadoTarea(){
