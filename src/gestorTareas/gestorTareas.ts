@@ -143,7 +143,7 @@ export namespace gestorTareas{
                 break;
             case "7":
                 rl.close();
-                console.log("Aplicación cerrada");
+                mostrarMenuPrincipal()
                 break;
             default:
                 console.log("Opción no contemplada. Inténtelo de nuevo: ");
