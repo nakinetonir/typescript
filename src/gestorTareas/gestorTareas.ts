@@ -6,11 +6,8 @@ import { EstadoTarea } from '../models/estados';
 import { Usuario } from '../models/usuario';
 import { Roles } from '../models/roles';
 import { PrioridadTarea } from '../models/prioridades';
-import { mostrarMenuPrincipal } from '../gestorPrincipal/gestorPrincipal';
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+import { mostrarMenuPrincipal, getRl } from '../gestorPrincipal/gestorPrincipal';
+const rl = getRl()
 
 export namespace gestorTareas{
     export function agregarTarea(){
@@ -142,7 +139,6 @@ export namespace gestorTareas{
                 eliminarTareasCompletadas();
                 break;
             case "7":
-                rl.close();
                 mostrarMenuPrincipal()
                 break;
             default:

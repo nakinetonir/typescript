@@ -9,11 +9,8 @@ import { UsuarioService } from '../services/usuariosServices';
 
 import { Usuario } from '../models/usuario';
 import { Roles } from '../models/roles';
-import { mostrarMenuPrincipal } from '../gestorPrincipal/gestorPrincipal';
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+import { mostrarMenuPrincipal, getRl } from '../gestorPrincipal/gestorPrincipal';
+const rl = getRl()
 
 export namespace gestorUsuarios{
     export function agregarUsuario(){
@@ -121,7 +118,6 @@ export namespace gestorUsuarios{
                 seleccionarUsuario();
                 break;
             case "6":
-                rl.close();
                 mostrarMenuPrincipal()
                 break;
             default:

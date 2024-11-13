@@ -4,9 +4,9 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 import { gestorTareas } from '../gestorTareas/gestorTareas';
-import { Usuario } from '../models/usuario';
-import { Roles } from '../models/roles';
 import { gestorUsuarios } from '../gestorUsuarios/gestorUsuarios';
+
+
 
 // Gestión de usuario, hay que crear algunos usuarios.
 //const usuarioEnCurso: Usuario;
@@ -17,6 +17,9 @@ import { gestorUsuarios } from '../gestorUsuarios/gestorUsuarios';
 // Llamada a mostrarMenu con el usuario creado
 //gestorTareas.mostrarMenu(UsuarioService.getUsuario());
 
+export function getRl() {
+    return rl
+}
 
 export function mostrarMenuPrincipal()
 {

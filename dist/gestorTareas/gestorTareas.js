@@ -1,70 +1,44 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gestorTareas = void 0;
-const readline = __importStar(require("readline"));
 const tareaServices_1 = require("../services/tareaServices");
 const validadores_1 = require("../utils/validadores");
 const estados_1 = require("../models/estados");
 const prioridades_1 = require("../models/prioridades");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+const gestorPrincipal_1 = require("../gestorPrincipal/gestorPrincipal");
+const rl = (0, gestorPrincipal_1.getRl)();
 var gestorTareas;
 (function (gestorTareas) {
-    function agregarTarea(usuario) {
+    function agregarTarea() {
         (0, validadores_1.rol)('agregarTarea');
         rl.question("Título de la tarea: ", tituloN => {
             rl.question("Descripción de la tarea (opcional): ", descripcionN => {
                 rl.question("Fecha de vencimiento de la tarea(obligatorio): ", fechaVencimientoN => {
                     const fechaVencimiento = new Date(fechaVencimientoN);
                     if (fechaVencimiento) {
-                        tareaServices_1.TareaService.agregarTarea(tituloN, fechaVencimiento, usuario, descripcionN);
+                        tareaServices_1.TareaService.agregarTarea(tituloN, fechaVencimiento, descripcionN);
                     }
                     else {
                         console.log("Fecha con formato incorrecto");
                     }
                 });
                 console.log("Tarea agregada correctamente.");
-                mostrarMenu(usuario);
+                mostrarMenu();
             });
         });
     }
     gestorTareas.agregarTarea = agregarTarea;
-    function verTareas(usuario) {
+    function verTareas() {
         (0, validadores_1.rol)('verTareas');
         const tareas = tareaServices_1.TareaService.obtenerTareas();
         console.log("\n---Lista de tareas---");
         tareas.forEach((tarea, index) => {
             console.log(`${index + 1}. Título: ${tarea.titulo}, Descripción: ${tarea.descripcion}, Estado: ${tarea.estado}`);
         });
-        mostrarMenu(usuario);
+        mostrarMenu();
     }
     gestorTareas.verTareas = verTareas;
-    function filtrarTareas(usuario) {
+    function filtrarTareas() {
         (0, validadores_1.rol)('filtrarTareas');
         rl.question("Ingrese el estado para filtrar (Pendiente, En progreaso, Completada, Cancelada): ", estado => {
             const estadoTarea = estados_1.EstadoTarea[estado];
@@ -78,18 +52,18 @@ var gestorTareas;
             else {
                 console.log("Estado no válido");
             }
-            mostrarMenu(usuario);
+            mostrarMenu();
         });
     }
     gestorTareas.filtrarTareas = filtrarTareas;
-    function eliminarTareasCompletadas(usuario) {
+    function eliminarTareasCompletadas() {
         (0, validadores_1.rol)('eliminarTareasCompletadas');
         tareaServices_1.TareaService.eliminarTareasCompletadas();
         console.log("Tareas completadas eliminadas");
-        mostrarMenu(usuario);
+        mostrarMenu();
     }
     gestorTareas.eliminarTareasCompletadas = eliminarTareasCompletadas;
-    function cambioEstadoTarea(usuario) {
+    function cambioEstadoTarea() {
         (0, validadores_1.rol)('cambioEstadoTarea');
         rl.question("Título de la tarea a modificar: ", titulo => {
             rl.question("Nuevo estado (Pendiente, En progreaso, Completada, Cancelada): ", nuevoEstado => {
@@ -101,12 +75,12 @@ var gestorTareas;
                 else {
                     console.log("Estado no válido.");
                 }
-                mostrarMenu(usuario);
+                mostrarMenu();
             });
         });
     }
     gestorTareas.cambioEstadoTarea = cambioEstadoTarea;
-    function cambioPrioridadTarea(usuario) {
+    function cambioPrioridadTarea() {
         (0, validadores_1.rol)('cambioPrioridadTarea');
         rl.question("Título de la tarea a modificar: ", titulo => {
             rl.question("Nueva prioridad (Alta, Media, Baja): ", nuevaPrioridad => {
@@ -118,12 +92,12 @@ var gestorTareas;
                 else {
                     console.log("Prioridad no válida.");
                 }
-                mostrarMenu(usuario);
+                mostrarMenu();
             });
         });
     }
     gestorTareas.cambioPrioridadTarea = cambioPrioridadTarea;
-    function mostrarMenu(usuario) {
+    function mostrarMenu() {
         console.log("\n---Menú de tareas---");
         console.log("1. Agregar una tarea");
         console.log("2. Ver todas las tareas");
@@ -133,37 +107,36 @@ var gestorTareas;
         console.log("6. Eliminar tareas completadas");
         console.log("7. Salir\n");
         rl.question("Selecciona una opción: ", opcion => {
-            manejarOpcion(opcion, usuario);
+            manejarOpcion(opcion);
         });
     }
     gestorTareas.mostrarMenu = mostrarMenu;
-    function manejarOpcion(opcion, usuario) {
+    function manejarOpcion(opcion) {
         switch (opcion) {
             case "1":
-                agregarTarea(usuario);
+                agregarTarea();
                 break;
             case "2":
-                verTareas(usuario);
+                verTareas();
                 break;
             case "3":
-                filtrarTareas(usuario);
+                filtrarTareas();
                 break;
             case "4":
-                cambioEstadoTarea(usuario);
+                cambioEstadoTarea();
                 break;
             case "5":
-                cambioPrioridadTarea(usuario);
+                cambioPrioridadTarea();
                 break;
             case "6":
-                eliminarTareasCompletadas(usuario);
+                eliminarTareasCompletadas();
                 break;
             case "7":
-                rl.close();
-                console.log("Aplicación cerrada");
+                (0, gestorPrincipal_1.mostrarMenuPrincipal)();
                 break;
             default:
                 console.log("Opción no contemplada. Inténtelo de nuevo: ");
-                mostrarMenu(usuario);
+                mostrarMenu();
         }
     }
     gestorTareas.manejarOpcion = manejarOpcion;

@@ -6,7 +6,7 @@ const estados_1 = require("../models/estados");
 var TareaService;
 (function (TareaService) {
     const tareas = [];
-    function agregarTarea(titulo, fechaVencimiento, usuario, descripcion, prioridad) {
+    function agregarTarea(titulo, fechaVencimiento, descripcion, prioridad) {
         const tarea = new tarea_1.Tarea(titulo, fechaVencimiento, descripcion);
         tareas.push(tarea);
     }
