@@ -27,7 +27,7 @@ export function rol(metodo: string) {
     console.log(metodosPermitidosPorRole,UsuarioService.getUsuario().rol,metodosPermitidosPorRole.find(m=> m === metodo))
     if(metodosPermitidosPorRole.find(metodo=> metodo === metodo))
     {
-        console.log("Pemitido")
+        console.log("Permitido")
     }
     else {
         throw new Error("This is the error message");

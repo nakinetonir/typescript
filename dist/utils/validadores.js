@@ -22,7 +22,7 @@ function obligatorio(target, key) {
 }
 function rol(metodo) {
     const metodosPermitidosPorRole = usuariosServices_1.UsuarioService.getUsuario().rol === roles_1.Roles.Administrador ? usuariosServices_1.UsuarioService.metodoAdministrador : usuariosServices_1.UsuarioService.metodosColaborador;
-    console.log(metodosPermitidosPorRole, usuariosServices_1.UsuarioService.getUsuario().rol, metodosPermitidosPorRole.find(metodo => metodo === metodo));
+    console.log(metodosPermitidosPorRole, usuariosServices_1.UsuarioService.getUsuario().rol, metodosPermitidosPorRole.find(m => m === metodo));
     if (metodosPermitidosPorRole.find(metodo => metodo === metodo)) {
         console.log("Pemitido");
     }
