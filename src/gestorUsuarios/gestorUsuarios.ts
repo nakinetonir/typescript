@@ -59,6 +59,21 @@ export namespace gestorUsuarios{
         rl.question("Ingrese el nombre del usuario que será eliminado: ", nombreUsuario=>{
         UsuarioService.eliminarUsuarioPorNombre(nombreUsuario)
         console.log(`Usuario ${nombreUsuario} eliminado`);
+        mostrarMenu()
+        })
+    }
+
+     export function seleccionarUsuario(){
+        rl.question("Ingrese el nombre del usuario logeado: ", nombreUsuario=>{
+        const usuario = UsuarioService.obtenerUsuarios().find(user=> user.nombreUsuario === nombreUsuario);
+        if(usuario) {
+            UsuarioService.setUsuario(usuario)
+            console.log(`Usuario ${nombreUsuario} logeado`);
+        }
+
+        else {
+            console.log(`Usuario ${nombreUsuario} incorrecto`);
+        }
         mostrarMenu();
         })
     }
