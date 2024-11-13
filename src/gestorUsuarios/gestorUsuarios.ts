@@ -87,7 +87,7 @@ export namespace gestorUsuarios{
     }
     export function mostrarMenu()
     {
-        console.log("\n---Menú de tareas---");
+        console.log("\n---Menú de usuarios---");
         console.log("1. Agregar un usuario");
         console.log("2. Ver todas los usuario");
         console.log("3. Filtrar usuarios por rol");
